@@ -1,29 +1,39 @@
-# pinia-store-with-auth
+# Pinia Store with Authentication
 
-This template should help get you started developing with Vue 3 in Vite.
+This project is a Pinia store with authentication using Vue 3, Firebase for authentication, VueUse, and Tailwind CSS. It provides a simple and scalable way to manage user authentication and state management in a Vue.js application.
 
-## Recommended IDE Setup
+## Table of Contents
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Customize configuration
+## Introduction
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+This project demonstrates how to set up a Pinia store for managing user authentication in a Vue 3 application. It uses Firebase for authentication services, VueUse for utility functions, and Tailwind CSS for styling.
 
-## Project Setup
+## Features
 
-```sh
-npm install
-```
+- User authentication (sign up, log in, log out)
+- State management with Pinia
+- Responsive UI with Tailwind CSS
+- Utility functions with VueUse
 
-### Compile and Hot-Reload for Development
+## Technologies Used
 
-```sh
-npm run dev
-```
+- [Vue 3](https://vuejs.org/)
+- [Pinia](https://pinia.vuejs.org/)
+- [Firebase](https://firebase.google.com/)
+- [VueUse](https://vueuse.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
-### Compile and Minify for Production
+## Installation
 
-```sh
-npm run build
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/your-repo-name.git
