@@ -1,0 +1,34 @@
+{
+  "name": "pinia-store-with-auth",
+  "version": "0.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/vue-fontawesome": "^3.0.0-5",
+    "@vueuse/core": "^10.9.0",
+    "firebase": "^10.12.0",
+    "lodash": "^4.17.21",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "@vitejs/plugin-vue": "^1.9.3",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "postcss": "^8.4.38",
+    "prettier": "2.4.1",
+    "tailwindcss": "^2.2.19",
+    "vite": "^2.5.1"
+  }
+}
