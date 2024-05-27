@@ -3,12 +3,12 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA9Sje9GiD6omufOku-AHl8HX6z0wDN_x4",
-  authDomain: "pinia-store-281a0.firebaseapp.com",
-  projectId: "pinia-store-281a0",
-  storageBucket: "pinia-store-281a0.appspot.com",
-  messagingSenderId: "565670427404",
-  appId: "1:565670427404:web:056dbf6d2ff50d6842e729"
+  apiKey: process.env.VITE_FIREBASE_API_KEY,
+  authDomain: process.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.VITE_FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig)
