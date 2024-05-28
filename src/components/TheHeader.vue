@@ -1,7 +1,6 @@
 <script setup>
 import { useAuthUserStore } from '../stores/AuthUserStore';
 import CartWidget from './CartWidget.vue';
-import {onMounted, isProxy, toRaw} from 'vue'
 
 const storeAuth = useAuthUserStore()
 
@@ -9,13 +8,6 @@ const storeAuth = useAuthUserStore()
 const logout= () => {
   storeAuth.logOutUser()
 }
-
-const editUser= () => {
-  storeAuth.logOutUser()
-}
-
-let name = storeAuth.user
-
 
 </script>
 
@@ -34,9 +26,9 @@ let name = storeAuth.user
       </button>
       <div class="absolute z-10 hidden bg-grey-200 group-hover:block">
           
-          <div class="px-2 pt-2 pb-4 bg-white bg-gray-200 shadow-lg">
+          <div class="px-2 pt-2 pb-4 bg-gray-200 shadow-lg">
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-             <div v-if="!storeAuth.user.id">
+             <div v-if="!storeAuth.userData.id">
               <RouterLink to="/auth">Login</RouterLink>
             </div>
             <div v-else>
@@ -44,7 +36,7 @@ let name = storeAuth.user
                 <span class="text-left">Edit Perfile</span>
               </RouterLink>
               <div
-                v-if="storeAuth.user.id"
+                v-if="storeAuth.userData.id"
                 @click="logout" 
                 class="text-black logout">Logout</div>
             </div>

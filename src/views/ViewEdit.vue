@@ -4,14 +4,14 @@
     <div class="card auth-form">
       <div class="card-content">
         <div class="text-3xl mb-5">
-            <img class="w-20 h-20 rounded-full" :src="AuthUserStore.user.photoURL" alt="Rounded avatar">
+            <img class="w-20 h-20 rounded-full" :src="AuthUserStore.userData.photoURL" alt="Rounded avatar">
         </div>
         <form @submit.prevent="onSubmit">
           <div class="text-left mb-4">
             <label class="">Email (unnmodifiable)</label>
             <div class="control">
               <input
-             v-model="AuthUserStore.user.email"
+             v-model="AuthUserStore.userData.email"
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="email"
               disabled
@@ -22,7 +22,7 @@
             <label class="">Full Name</label>
             <div class="control">
               <input
-             v-model="AuthUserStore.user.displayName"
+             v-model="AuthUserStore.userData.displayName"
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="text"
               >
@@ -56,9 +56,10 @@ import { useAuthUserStore } from '@/stores/AuthUserStore';
 import { ref } from 'vue';
 const AuthUserStore = useAuthUserStore()
 
-const fileInputRef = ref(null)
 const file = ref()
 const image = ref()
+
+console.log(AuthUserStore.userData)
 
 function uploadFile(e) {
   image.value = e.target.files[0];
@@ -69,10 +70,10 @@ function uploadFile(e) {
 const onSubmit = () => {
   // const file = files.value
     console.log(image.value)
-  if(!AuthUserStore.user.displayName) {
+  if(!AuthUserStore.userData.displayName) {
     alert('Please enter your full name')
   } else {
-      AuthUserStore.editUser(AuthUserStore.user.displayName, image.value)
+      AuthUserStore.editUser(AuthUserStore.userData.displayName, image.value)
     
   }
 }

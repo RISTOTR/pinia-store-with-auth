@@ -13,9 +13,9 @@ const showShoppingCart = ref(false);
 const showLoginRegister = ref(false);
 
 const showLoginRegisterBtn = () => {
- console.log(AuthUserStore.user)
+ console.log(AuthUserStore.userData)
   showShoppingCart.value = false
-  if(!AuthUserStore.user.id) {
+  if(!AuthUserStore.userData.id) {
     showLoginRegister.value = true
   }
 }

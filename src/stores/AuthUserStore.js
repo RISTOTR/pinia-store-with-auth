@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { defineStore, acceptHMRUpdate } from 'pinia'
 import { reactive } from 'vue'
 import { auth } from '@/js/firebase'
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
@@ -9,18 +9,18 @@ import { useCartStore } from './CartStore';
 export const useAuthUserStore = defineStore('AuthUserStore', () => {
 
 
-  const user = reactive({})
+  const userData = reactive({})
 
   function init() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        this.user.id = user.uid
-        this.user.email = user.email
-        this.user.displayName = user.displayName
-        this.user.photoURL = user.photoURL
-        this.router.push('/')    
+        userData.id = user.uid
+        userData.email = user.email
+        userData.displayName = user.displayName
+        userData.photoURL = user.photoURL
+        this.router.push({ name: 'store' });  
       } else {
-        this.user = {}
+        userData.value = {}
       }
     });
   }
@@ -28,7 +28,7 @@ export const useAuthUserStore = defineStore('AuthUserStore', () => {
   function registerUser(credentials) {
     createUserWithEmailAndPassword(auth, credentials.email, credentials.password, credentials.name)
     .then((userCredential) => {
-      const user = userCredential.user
+      userData = userCredential.user
     }).catch((error) => {
       const errorCode = error.code
       const errorMessage = error.message
@@ -41,16 +41,17 @@ export const useAuthUserStore = defineStore('AuthUserStore', () => {
     const CartStore = useCartStore();
     signOut(auth).then(() => {
       CartStore.reset()
-      this.router('/')
+      this.router.push({ name: 'store' });
     }).catch((error) => {
       console.log(error.message)
     });
   }
 
   function loginUser(credentials) {
-    signInWithEmailAndPassword(auth, credentials.email, credentials.password).then((userCredential) => {
-      this.user = userCredential.user
-      console.log(user)
+    signInWithEmailAndPassword(auth, credentials.email, credentials.password)
+    .then((userCredential) => {
+      userData = userCredential.user
+      console.log(userData)
     }).catch((error) => {
       console.log(error.message)
     });
@@ -60,7 +61,7 @@ export const useAuthUserStore = defineStore('AuthUserStore', () => {
   try {
     if(img) {
     const storage = getStorage();
-    const storageRef = ref(storage, `perfiles/${this.user.id}`)
+    const storageRef = ref(storage, `perfiles/${userData.id}`)
         await uploadBytes(storageRef, img)
         const photoURL = await getDownloadURL(storageRef)
         await updateProfile(auth.currentUser, {
@@ -74,9 +75,13 @@ export const useAuthUserStore = defineStore('AuthUserStore', () => {
    } catch (error)  {
       console.log(error)
     } finally {
-      this.router.push('/')
+      this.router.push({ name: 'store' });
     }
  }
 
-  return { user, registerUser, logOutUser, loginUser, init, editUser }
+  return { userData, registerUser, logOutUser, loginUser, init, editUser }
 })
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useAuthUserStore, import.meta.hot))
+}
